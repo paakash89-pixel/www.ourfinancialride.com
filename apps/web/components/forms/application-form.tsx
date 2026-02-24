@@ -21,6 +21,7 @@ interface SubmitResponse {
   record: ApplicationRecord;
   message?: string;
   emailTo?: string;
+  emailError?: string | null;
 }
 
 const defaultValues: ApplicationValues = {
@@ -69,7 +70,9 @@ export function ApplicationForm() {
 
       const payload = (await response.json()) as SubmitResponse & { message?: string };
       if (!response.ok || !payload.ok) {
-        throw new Error(payload.message ?? "Application failed. Please retry.");
+        const message = payload.message ?? "Application failed. Please retry.";
+        const detail = payload.emailError ? ` (${payload.emailError})` : "";
+        throw new Error(`${message}${detail}`);
       }
 
       setSubmitted(payload.record);
