@@ -1,0 +1,20 @@
+Section,Metric,INR Example,USD Example,Formula (Google Sheets/Excel),How to use
+Profile,Annual income,4500000,180000,,Family-of-four baseline within OFR target range
+Profile,Annual investing,1350000,54000,,Target 30% savings discipline
+Profile,Savings rate %,30,30,=IFERROR(C3/C2,0),Protect this rate during transitions
+Profile,Current portfolio,7500000,250000,,Starting portfolio today
+Profile,FI target,42000000,1400000,,Conservative work-optional number
+Tracker,FI progress %,17.86,17.86,=IFERROR(C5/C6*100,0),How far you are from FI number
+Tracker,Monthly freedom gap,240278,8009,=IFERROR((C6-C5)/(12*12),0),12-year bridge assumption
+Tracker,Alignment score,84,86,,Quarterly spouse-alignment score
+ChartData,Quarter,INR Score,USD Score,,Create line chart from rows 10-15
+ChartData,Q1,52,55,,
+ChartData,Q2,58,61,,
+ChartData,Q3,63,67,,
+ChartData,Q4,71,73,,
+ChartData,Q5,78,79,,
+ChartData,Q6,84,86,,
+Diagram,Step 1,Shared 10-year vision,Shared 10-year vision,,Write in one sentence
+Diagram,Step 2,Define non-negotiables,Define non-negotiables,,Budget + lifestyle guardrails
+Diagram,Step 3,Decision rules,Decision rules,,Both spouses approve major spends
+Diagram,Step 4,Quarterly reset,Quarterly reset,,Review and adjust once a quarter

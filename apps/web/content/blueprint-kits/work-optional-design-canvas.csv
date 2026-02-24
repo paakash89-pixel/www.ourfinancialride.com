@@ -1,0 +1,20 @@
+Section,Metric,INR Example,USD Example,Formula (Google Sheets/Excel),How to use
+Profile,Required annual spend,2200000,78000,,Work-optional baseline budget
+Profile,Projected passive cashflow,1500000,52000,,From portfolio + stable income streams
+Profile,Optional work income needed,700000,26000,=C2-C3,Gap during transition years
+Profile,Weekly hours target (work-optional),18,16,,Lifestyle design target
+Profile,Time freedom score,79,82,,Design quality score
+Tracker,Coverage ratio %,68.18,66.67,=IFERROR(C3/C2*100,0),Passive coverage of lifestyle
+Tracker,Transition confidence %,74,78,,Plan confidence level
+Tracker,90-day action completion %,85,88,,Execution score
+ChartData,Quarter,INR Readiness %,USD Readiness %,,Use rows 10-15 for line chart
+ChartData,Q1,34,37,,
+ChartData,Q2,45,49,,
+ChartData,Q3,58,61,,
+ChartData,Q4,67,71,,
+ChartData,Q5,77,80,,
+ChartData,Q6,86,88,,
+Diagram,Step 1,Define ideal week,Define ideal week,,Start with calendar design
+Diagram,Step 2,Map income needs,Map income needs,,Separate essential and optional
+Diagram,Step 3,Create transition milestones,Create transition milestones,,Career and location choices
+Diagram,Step 4,Run annual redesign,Run annual redesign,,Adjust to new priorities

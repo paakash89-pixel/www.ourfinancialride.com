@@ -1,0 +1,139 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { OnboardingWorkflow } from "../../components/onboarding-workflow";
+import { PricingCard } from "../../components/pricing-card";
+import { StoryReel } from "../../components/story-reel";
+import { philosophyRanked } from "../../lib/content";
+
+export const metadata: Metadata = {
+  title: "Build Time Freedom Without Noise",
+  description:
+    "For families earning ₹25L–₹1Cr (India) or $100k–$250k (US), OFR helps build work-optional living in 8-10 years."
+};
+
+const whoFor = [
+  "Families, individuals, and serious professionals",
+  "NRIs planning a move but unsure how; we build a clear structure",
+  "Ready to save 25%+ after-tax",
+  "Calm systems over hype"
+];
+
+const whoNotFor = [
+  "Get-rich-quick mindset",
+  "Trading or crypto focus",
+  "Married applicants unwilling to include their spouse"
+];
+
+const toolsPreview = [
+  {
+    title: "Compound Interest Calculator",
+    summary: "Track growth with and without inflation."
+  },
+  {
+    title: "FI Calculator + Scenarios",
+    summary: "See your FI target and timeline."
+  },
+  {
+    title: "Savings Rate Guard",
+    summary: "Catch lifestyle creep early."
+  },
+  {
+    title: "Withdrawal Sustainability",
+    summary: "Test if withdrawals can last."
+  }
+];
+
+export default function HomePage() {
+  return (
+    <main className="page-shell py-12 sm:py-16">
+      <section className="card animate-fade-up space-y-6 p-7 sm:p-10">
+        <p className="text-xs uppercase tracking-[0.18em] text-slateBlue-500">OFR — Our Financial Ride</p>
+        <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-slateBlue-700 sm:text-5xl">
+          Build Time Freedom Without Noise.
+        </h1>
+        <p className="max-w-3xl text-base leading-7 text-slateBlue-500">
+          For families and serious professionals earning ₹25L–₹1Cr (India) or $100k–$250k (US).
+          We build a simple, disciplined plan so work can become optional in 8-10 years.
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <Link
+            href="/work-with-us#apply"
+            className="ios-btn-primary px-5 py-3 text-sm"
+          >
+            Apply for 1:1 Coaching
+          </Link>
+          <Link
+            href="/tools"
+            className="ios-btn-secondary px-5 py-3 text-sm"
+          >
+            Use Free Tools
+          </Link>
+        </div>
+        <p className="text-sm text-slateBlue-500">
+          Free 20-minute intro call before any paid plan.
+        </p>
+      </section>
+
+      <section className="mt-10 grid gap-4 sm:grid-cols-2">
+        <article className="card animate-fade-up p-6">
+          <h2 className="text-xl font-semibold text-slateBlue-700">Who This Is For</h2>
+          <ul className="mt-4 space-y-2 text-sm text-slateBlue-600">
+            {whoFor.map((item) => (
+              <li key={item}>• {item}</li>
+            ))}
+          </ul>
+        </article>
+        <article className="card animate-fade-up p-6">
+          <h2 className="text-xl font-semibold text-slateBlue-700">Who This Is NOT For</h2>
+          <ul className="mt-4 space-y-2 text-sm text-slateBlue-600">
+            {whoNotFor.map((item) => (
+              <li key={item}>• {item}</li>
+            ))}
+          </ul>
+        </article>
+      </section>
+
+      <StoryReel />
+
+      <section className="card mt-10 animate-fade-up p-6 sm:p-8">
+        <h2 className="section-title">OFR Philosophy — Ranked Principles</h2>
+        <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+          {philosophyRanked.map((item, index) => (
+            <article key={item} className="ios-soft-panel p-4 text-sm text-slateBlue-700">
+              <p className="text-xs tracking-wide text-slateBlue-500">#{index + 1}</p>
+              <p className="box-copy mt-2">{item}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <div className="mt-10">
+        <PricingCard />
+      </div>
+
+      <div className="mt-10">
+        <OnboardingWorkflow />
+      </div>
+
+      <section className="card mt-10 animate-fade-up p-6 sm:p-8">
+        <h2 className="section-title">Tools Preview</h2>
+        <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {toolsPreview.map((tool) => (
+            <article key={tool.title} className="ios-soft-panel p-4">
+              <h3 className="text-base font-semibold text-slateBlue-700">{tool.title}</h3>
+              <p className="box-copy mt-2 text-sm text-slateBlue-600">{tool.summary}</p>
+              <div className="mt-4 flex items-center gap-3 text-sm">
+                <Link href="/tools" className="font-medium text-slateBlue-700 underline underline-offset-4">
+                  Try tool
+                </Link>
+                <Link href="/work-with-us#apply" className="text-slateBlue-500 underline underline-offset-4">
+                  Apply
+                </Link>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}

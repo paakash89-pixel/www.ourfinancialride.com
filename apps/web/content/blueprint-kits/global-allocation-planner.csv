@@ -1,0 +1,20 @@
+Section,Metric,INR Example,USD Example,Formula (Google Sheets/Excel),How to use
+Profile,Home equity %,55,35,,Home-market anchor
+Profile,International equity %,35,55,,Global diversification
+Profile,Debt or cash %,10,10,=100-C2-C3,Stability sleeve
+Profile,Current FX exposure %,35,55,,Foreign currency-linked assets
+Profile,Target FX exposure %,40,50,,Based on future spending currency
+Tracker,FX mismatch %,5,5,=ABS(C5-C6),Distance from target exposure
+Tracker,Diversification score,78,82,,Simple allocation fit score
+Tracker,Home bias %,61.11,38.89,=IFERROR(C2/(C2+C3)*100,0),Concentration indicator
+ChartData,Quarter,INR Readiness,USD Readiness,,Use rows 10-15 for line chart
+ChartData,Q1,42,46,,
+ChartData,Q2,54,58,,
+ChartData,Q3,62,66,,
+ChartData,Q4,71,75,,
+ChartData,Q5,80,83,,
+ChartData,Q6,88,90,,
+Diagram,Step 1,Map spending currency,Map spending currency,,Where family spends in future
+Diagram,Step 2,Set allocation ranges,Set allocation ranges,,Domestic and global mix
+Diagram,Step 3,Track FX drift,Track FX drift,,Adjust gradually
+Diagram,Step 4,Annual rebalance,Annual rebalance,,No frequent tinkering

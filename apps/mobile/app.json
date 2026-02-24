@@ -1,0 +1,21 @@
+{
+  "expo": {
+    "name": "Intrinsic",
+    "slug": "intrinsic",
+    "scheme": "intrinsic",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.intrinsic.app"
+    },
+    "android": {
+      "package": "com.intrinsic.app"
+    },
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

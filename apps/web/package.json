@@ -1,0 +1,44 @@
+{
+  "name": "@intrinsic/web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --webpack -p 3000",
+    "build": "next build --webpack",
+    "start": "next start -p 3000",
+    "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --check .",
+    "kits:generate": "node scripts/generate-blueprint-kits.cjs",
+    "kits:master-us": "node scripts/generate-blueprint-master-us.cjs"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.2.8",
+    "@hookform/resolvers": "^5.2.2",
+    "@intrinsic/shared": "workspace:*",
+    "chart.js": "^4.5.1",
+    "exceljs": "^4.4.0",
+    "gray-matter": "^4.0.3",
+    "next": "^16.1.6",
+    "react": "^19.0.0",
+    "react-chartjs-2": "^5.3.0",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.62.0",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
+    "xlsx-chart": "^0.4.3",
+    "zod": "^4.1.11"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.0",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.20.0",
+    "eslint-config-next": "^16.1.6",
+    "postcss": "^8.5.6",
+    "prettier": "^3.5.0",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.3"
+  }
+}

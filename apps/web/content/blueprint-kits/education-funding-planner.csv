@@ -1,0 +1,20 @@
+Section,Metric,INR Example,USD Example,Formula (Google Sheets/Excel),How to use
+Profile,Education goal year,2038,2038,,Primary child goal example
+Profile,Current goal corpus,2100000,70000,,Current dedicated corpus
+Profile,Future goal amount,6500000,220000,,Inflation-adjusted target
+Profile,Funding gap,4400000,150000,=C4-C3,Amount still to fund
+Profile,Months to goal,144,144,,12-year runway
+Tracker,Required monthly contribution,18661,636,=PMT(0.08/12,C6,0,-C5),Assumes 8% annual return
+Tracker,Current monthly contribution,32000,1050,,Current transfer pace
+Tracker,Contribution surplus,13339,414,=C8-C7,Positive means ahead of schedule
+ChartData,Quarter,INR Funding %,USD Funding %,,Use rows 10-15 for line chart
+ChartData,Q1,35,39,,
+ChartData,Q2,44,48,,
+ChartData,Q3,55,60,,
+ChartData,Q4,67,71,,
+ChartData,Q5,79,82,,
+ChartData,Q6,90,92,,
+Diagram,Step 1,Define goal amount,Define goal amount,,Future-value target
+Diagram,Step 2,Calculate funding gap,Calculate funding gap,,Update yearly
+Diagram,Step 3,Automate monthly transfer,Automate monthly transfer,,Treat like non-negotiable bill
+Diagram,Step 4,Annual review and rebalance,Annual review and rebalance,,Keep risk appropriate

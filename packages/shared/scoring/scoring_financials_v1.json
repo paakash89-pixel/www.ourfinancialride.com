@@ -1,0 +1,10 @@
+{
+  "version": "scoring_financials_v1",
+  "minHistoryYears": 7,
+  "weights": {
+    "profitability": 1,
+    "debtSafety": 1,
+    "cashReality": 1,
+    "durability": 1
+  }
+}

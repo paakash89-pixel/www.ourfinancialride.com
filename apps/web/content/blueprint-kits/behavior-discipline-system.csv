@@ -1,0 +1,20 @@
+Section,Metric,INR Example,USD Example,Formula (Google Sheets/Excel),How to use
+Profile,Planned quarterly reviews,4,4,,One per quarter
+Profile,Completed quarterly reviews,4,4,,Execution consistency
+Profile,Policy actions planned,25,25,,Pre-committed actions
+Profile,Policy actions followed,22,23,,Actual adherence
+Profile,Panic actions avoided,4,5,,How many emotional mistakes avoided
+Tracker,Policy adherence %,88,92,=IFERROR(C5/C4*100,0),Core behavior metric
+Tracker,Behavior risk %,12,8,=100-C7,Lower is better
+Tracker,Discipline score,91,93,,Simple accountability score
+ChartData,Quarter,INR Discipline,USD Discipline,,Use rows 10-15 for line chart
+ChartData,Q1,49,52,,
+ChartData,Q2,58,61,,
+ChartData,Q3,66,69,,
+ChartData,Q4,75,78,,
+ChartData,Q5,83,86,,
+ChartData,Q6,91,93,,
+Diagram,Step 1,List emotional triggers,List emotional triggers,,Market drop and social comparison
+Diagram,Step 2,Write pre-committed actions,Write pre-committed actions,,48-hour buffer rule
+Diagram,Step 3,Execute checklist,Execute checklist,,No ad-hoc decisions
+Diagram,Step 4,Quarterly debrief,Quarterly debrief,,Improve one behavior each cycle

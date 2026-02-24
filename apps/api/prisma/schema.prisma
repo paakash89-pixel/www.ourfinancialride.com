@@ -1,0 +1,281 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum EntitlementSource {
+  MANUAL
+  REVENUECAT
+}
+
+enum PlanTier {
+  EXPLORER
+  OWNER
+}
+
+enum BehaviorEventType {
+  PANIC_SELL_SIMULATED
+  HELD
+}
+
+enum PositionSizeLabel {
+  SMALL
+  MEDIUM
+  LARGE
+  CUSTOM
+}
+
+model UserProfile {
+  id                   String         @id
+  email                String?
+  displayName          String?
+  region               String         @default("US")
+  currency             String         @default("USD")
+  concentrationLabel   String         @default("BALANCED")
+  concentrationAcknowledged Boolean   @default(false)
+  privateMode          Boolean        @default(false)
+  aiMemoryOptIn        Boolean        @default(false)
+  disclaimerAcceptedAt DateTime?
+  createdAt            DateTime       @default(now())
+  updatedAt            DateTime       @updatedAt
+
+  theses               Thesis[]
+  entitlements         Entitlement[]
+  usageCounters        UsageCounter[]
+  watchlistItems       WatchlistItem[]
+  pccContracts         PccContract[]
+  sellFlowSessions     SellFlowSession[]
+  behaviorEvents       BehaviorEvent[]
+  weeklyReflections    WeeklyReflection[]
+  disciplineSnapshots  DisciplineSnapshot[]
+  chatMessages         ChatMessage[]
+}
+
+model Thesis {
+  id        String   @id @default(cuid())
+  userId    String
+  ticker    String
+  content   String
+  createdAt DateTime @default(now())
+
+  user UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, ticker, createdAt])
+}
+
+model Entitlement {
+  id         String            @id @default(cuid())
+  userId     String
+  plan       PlanTier
+  status     String
+  source     EntitlementSource
+  region     String
+  expiresAt  DateTime?
+  createdAt  DateTime          @default(now())
+  updatedAt  DateTime          @updatedAt
+
+  user UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, status, expiresAt])
+}
+
+model UsageCounter {
+  id           String   @id @default(cuid())
+  userId       String
+  periodMonth  String
+  analysesUsed Int      @default(0)
+  aiMessagesUsed Int    @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, periodMonth])
+}
+
+model WatchlistItem {
+  id        String   @id @default(cuid())
+  userId    String
+  ticker    String
+  region    String
+  createdAt DateTime @default(now())
+
+  user UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, ticker])
+}
+
+model CompanySnapshot {
+  id          String   @id @default(cuid())
+  ticker      String
+  region      String
+  scoreJson   Json
+  updatedAt   DateTime @default(now())
+
+  @@unique([ticker, region])
+}
+
+model StressPeriod {
+  id          String   @id @default(cuid())
+  region      String
+  startDate   DateTime @map("start_at")
+  endDate     DateTime? @map("end_at")
+  peak        Float
+  trough      Float
+  drawdownPct Float    @map("drawdown_pct")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt
+
+  @@unique([region, startDate])
+  @@index([region, endDate])
+  @@map("stress_periods")
+}
+
+model MarketStressStatus {
+  id               String   @id @default(cuid())
+  region           String   @unique
+  stressModeActive Boolean  @default(false) @map("stress_mode_active")
+  drawdownPct      Float    @default(0) @map("drawdown_pct")
+  peakDate         DateTime? @map("peak_date")
+  activeStartDate  DateTime? @map("active_start_date")
+  refreshedAt      DateTime @default(now()) @map("refreshed_at")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt
+
+  @@map("market_stress_status")
+}
+
+model PccContract {
+  id                     String        @id @default(cuid())
+  userId                 String
+  ticker                 String
+  region                 String
+  horizonYears           Int
+  maxDrawdownTolerance   Int
+  thesisHowMoney         String
+  thesisWhyWin10Years    String
+  thesisBreaksPermanently String
+  breakConditionChecks   Json
+  breakConditionNotes    String?
+  originId               String?
+  version                Int           @default(1)
+  immutable              Boolean       @default(true)
+  reviewedAt             DateTime?     @map("reviewed_at")
+  createdAt              DateTime      @default(now())
+
+  user      UserProfile  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  origin    PccContract? @relation("PccOrigin", fields: [originId], references: [id], onDelete: SetNull)
+  revisions PccContract[] @relation("PccOrigin")
+
+  @@index([userId, ticker, region, createdAt])
+  @@map("pcc_contracts")
+}
+
+model SellFlowSession {
+  id        String   @id @default(cuid())
+  userId    String
+  ticker    String
+  region    String
+  startedAt DateTime @default(now())
+  expiresAt DateTime
+  usedAt    DateTime?
+
+  user UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, ticker, startedAt])
+}
+
+model BehaviorEvent {
+  id               String            @id @default(cuid())
+  userId           String
+  ticker           String
+  region           String
+  type             BehaviorEventType @map("event_type")
+  clientEventId    String?
+  reasonText       String            @map("reason_text")
+  breakConditionsMet Boolean         @default(false)
+  breakConditionTriggered Boolean    @default(false) @map("break_condition_triggered")
+  breakConditionMatches Json?        @map("break_condition_matches")
+  stressModeActive Boolean           @map("stress_mode_active")
+  priceAtEvent     Float             @map("price_at_event")
+  positionSizeLabel PositionSizeLabel?
+  notional         Float?
+  createdAt        DateTime          @default(now()) @map("created_at")
+
+  user           UserProfile     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  regretSnapshot RegretSnapshot?
+
+  @@index([userId, createdAt])
+  @@index([userId, type, createdAt])
+  @@index([userId, region, createdAt])
+  @@unique([userId, clientEventId])
+  @@map("behavior_events")
+}
+
+model RegretSnapshot {
+  id            String   @id @default(cuid())
+  eventId       String   @unique
+  regret3mPct   Float?   @map("regret_3m_pct")
+  regret6mPct   Float?   @map("regret_6m_pct")
+  regret12mPct  Float?   @map("regret_12m_pct")
+  regretCost3m  Float?   @map("regret_cost_3m")
+  regretCost6m  Float?   @map("regret_cost_6m")
+  regretCost12m Float?   @map("regret_cost_12m")
+  regretCostAmount Float? @map("regret_cost_amount")
+  currency      String
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  event BehaviorEvent @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  @@map("regret_snapshots")
+}
+
+model WeeklyReflection {
+  id           String   @id @default(cuid())
+  userId       String
+  weekStartDate DateTime @map("week_start_date")
+  prompt       String
+  responseText String   @map("response_text")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  user UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, weekStartDate])
+  @@index([userId, createdAt])
+  @@map("weekly_reflections")
+}
+
+model DisciplineSnapshot {
+  id                String   @id @default(cuid())
+  userId            String
+  asOfDate          DateTime @map("as_of_date")
+  score             Int
+  contributorsJson  Json     @map("contributors_json")
+  holdStreakDays    Int      @default(0) @map("hold_streak_days")
+  bestHoldStreakDays Int     @default(0) @map("best_hold_streak_days")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt
+
+  user UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, asOfDate])
+  @@index([userId, asOfDate])
+  @@map("discipline_snapshots")
+}
+
+model ChatMessage {
+  id            String   @id @default(cuid())
+  userId        String
+  role          String
+  content       String
+  privateMode   Boolean
+  memoryEnabled Boolean
+  createdAt     DateTime @default(now())
+
+  user UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+}

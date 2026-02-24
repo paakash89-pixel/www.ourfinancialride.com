@@ -1,0 +1,46 @@
+{
+  "name": "@intrinsic/api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "nest start --watch --entryFile apps/api/src/main",
+    "build": "nest build",
+    "start": "node dist/apps/api/src/main.js",
+    "test": "vitest run --config vitest.config.ts",
+    "lint": "tsc -p tsconfig.json --noEmit",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "format": "prettier --check src",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "db:migrate": "prisma migrate dev"
+  },
+  "dependencies": {
+    "@intrinsic/shared": "workspace:*",
+    "@nestjs/bullmq": "^10.2.3",
+    "@nestjs/common": "^10.4.15",
+    "@nestjs/config": "^3.3.0",
+    "@nestjs/core": "^10.4.15",
+    "@nestjs/platform-express": "^10.4.15",
+    "@nestjs/schedule": "^4.1.2",
+    "@prisma/client": "^6.4.1",
+    "bullmq": "^5.41.3",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "firebase-admin": "^13.1.0",
+    "ioredis": "^5.4.2",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^10.4.9",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.0",
+    "@types/supertest": "^6.0.2",
+    "eslint": "^9.20.0",
+    "prettier": "^3.5.0",
+    "prisma": "^6.4.1",
+    "supertest": "^7.1.1",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.5"
+  }
+}

@@ -1,0 +1,20 @@
+Section,Metric,INR Example,USD Example,Formula (Google Sheets/Excel),How to use
+Profile,Monthly income,375000,15000,,Net monthly inflow
+Profile,Monthly investing auto-transfer,112500,4500,,First transfer after salary credit
+Profile,Monthly fixed costs,120000,4000,,Keep fixed-cost ratio controlled
+Profile,Monthly variable joy,40000,1200,,Enjoy life without fixed-cost lock-in
+Profile,Monthly other variable,30000,1000,,Flexible spend bucket
+Tracker,Autopilot ratio %,30,30,=IFERROR(C3/C2*100,0),Money moved automatically before spending
+Tracker,Fixed cost ratio %,32,27,=IFERROR(C4/C2*100,0),Protect savings rate through transitions
+Tracker,Leftover leakage,72500,4300,=C2-(C3+C4+C5+C6),Move leakage to investing within 48 hours
+ChartData,Quarter,INR Automation %,USD Automation %,,Use rows 10-15 for line chart
+ChartData,Q1,46,49,,
+ChartData,Q2,58,61,,
+ChartData,Q3,69,72,,
+ChartData,Q4,78,81,,
+ChartData,Q5,86,88,,
+ChartData,Q6,92,93,,
+Diagram,Step 1,Income landing account,Income landing account,,One account receives salary
+Diagram,Step 2,Auto-transfer to investments,Auto-transfer to investments,,No manual decision needed
+Diagram,Step 3,Bills + fixed costs account,Bills + fixed costs account,,Cap fixed costs
+Diagram,Step 4,Joy bucket + review,Joy bucket + review,,Weekly cap and monthly reset

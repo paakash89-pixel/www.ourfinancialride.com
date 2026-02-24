@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+
+      - name: Install
+        run: pnpm install --frozen-lockfile=false
+
+      - name: Prisma generate
+        run: pnpm --filter @intrinsic/api prisma:generate
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Unit tests (shared)
+        run: pnpm --filter @intrinsic/shared test
+
+      - name: API e2e tests
+        run: pnpm --filter @intrinsic/api test
+
+      - name: Typecheck
+        run: pnpm typecheck

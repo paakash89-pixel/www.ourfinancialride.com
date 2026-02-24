@@ -1,0 +1,20 @@
+Section,Metric,INR Example,USD Example,Formula (Google Sheets/Excel),How to use
+Profile,Monthly essential spend,140000,4800,,Used for runway planning
+Profile,Emergency target (12 months),1680000,57600,=C2*12,Core safety target
+Profile,Current emergency corpus,980000,28000,,Current liquid buffer
+Profile,Cover gap,700000,29600,=C3-C4,Amount remaining to hit full runway
+Profile,Monthly contribution to close gap,29167,2467,=IFERROR(C5/24,0),24-month closure pace
+Risk,Health insurance adequacy score,78,82,,Coverage quality score
+Risk,Life insurance adequacy score,72,80,,Coverage quality score
+Risk,Documents organized score,70,76,,Claim-readiness score
+ChartData,Quarter,INR Runway Months,USD Runway Months,,Use rows 10-15 for line chart
+ChartData,Q1,4,3,,
+ChartData,Q2,6,5,,
+ChartData,Q3,7,7,,
+ChartData,Q4,9,8,,
+ChartData,Q5,10,10,,
+ChartData,Q6,12,12,,
+Diagram,Step 1,Measure essential spend,Measure essential spend,,Exclude optional spend
+Diagram,Step 2,Build 12-month runway,Build 12-month runway,,Auto-transfer each payday
+Diagram,Step 3,Audit risk cover,Audit risk cover,,Health + life + disability
+Diagram,Step 4,Store claim docs,Store claim docs,,Keep one digital vault

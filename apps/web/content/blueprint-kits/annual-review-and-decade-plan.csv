@@ -1,0 +1,20 @@
+Section,Metric,INR Example,USD Example,Formula (Google Sheets/Excel),How to use
+Profile,Current savings rate %,30,30,,Maintain through transitions
+Profile,10-year target portfolio,68000000,2300000,,Conservative target trajectory
+Profile,Current projected portfolio,62000000,2100000,,Current model output
+Profile,Projection gap,6000000,200000,=C3-C4,Amount to close
+Profile,Years remaining,10,10,,Planning horizon
+Tracker,Required annual improvement,600000,20000,=IFERROR(C5/C6,0),Annual gap closure pace
+Tracker,Quarterly review completion %,100,100,,All four reviews completed
+Tracker,Confidence score,88,90,,Conservative plan confidence
+ChartData,Quarter,INR Confidence,USD Confidence,,Use rows 10-15 for line chart
+ChartData,Q1,51,54,,
+ChartData,Q2,60,63,,
+ChartData,Q3,68,71,,
+ChartData,Q4,76,79,,
+ChartData,Q5,84,87,,
+ChartData,Q6,92,94,,
+Diagram,Step 1,Review prior year outcomes,Review prior year outcomes,,Wins and misses
+Diagram,Step 2,Refresh assumptions,Refresh assumptions,,Use conservative returns
+Diagram,Step 3,Reset 10-year milestones,Reset 10-year milestones,,Update timeline and guardrails
+Diagram,Step 4,Publish next-year actions,Publish next-year actions,,Assign owner and due dates

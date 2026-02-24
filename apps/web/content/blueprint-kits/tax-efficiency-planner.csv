@@ -1,0 +1,20 @@
+Section,Metric,INR Example,USD Example,Formula (Google Sheets/Excel),How to use
+Profile,Annual investing target,1350000,54000,,Total annual investing
+Profile,Priority bucket contribution,950000,42000,,Tax-efficient bucket first
+Profile,Discretionary bucket contribution,400000,12000,=C2-C3,Allocate after priority buckets
+Profile,Tax drag before optimization,85000,2100,,Estimated annual drag
+Profile,Tax drag after optimization,52000,1300,,Estimated annual drag after sequence
+Tracker,Estimated tax savings,33000,800,=C5-C6,Benefit from contribution order
+Tracker,Priority completion %,70.37,77.78,=IFERROR(C3/C2*100,0),How much of target is in priority buckets
+Tracker,Savings rate %,30,30,=IFERROR(C2/4500000*100,0),Tie tax decisions to overall plan
+ChartData,Quarter,INR Completion %,USD Completion %,,Use rows 10-15 for line chart
+ChartData,Q1,38,41,,
+ChartData,Q2,49,53,,
+ChartData,Q3,63,66,,
+ChartData,Q4,74,77,,
+ChartData,Q5,84,86,,
+ChartData,Q6,92,94,,
+Diagram,Step 1,Define contribution ladder,Define contribution ladder,,Rank by tax efficiency
+Diagram,Step 2,Automate contribution sequence,Automate contribution sequence,,Run monthly
+Diagram,Step 3,Track annual limits,Track annual limits,,Avoid under-funding priority buckets
+Diagram,Step 4,Rebalance tax-aware,Rebalance tax-aware,,Reduce unnecessary tax drag

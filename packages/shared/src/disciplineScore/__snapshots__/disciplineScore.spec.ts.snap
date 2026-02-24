@@ -1,0 +1,20 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`why changed messages > builds stable plain-English messages 1`] = `
+{
+  "mainDriver": "QUALITY",
+  "messages": [
+    "Quality (strong businesses) improved and moved your score.",
+    "Track durable businesses with enough history.",
+  ],
+}
+`;
+
+exports[`why changed messages > emits panic-specific explanation when panic happened 1`] = `
+{
+  "mainDriver": "RESILIENCE",
+  "messages": [
+    "Score fell mainly from a panic log. Use the pause flow next time.",
+  ],
+}
+`;

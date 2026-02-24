@@ -1,0 +1,237 @@
+@import "@fontsource/inter/index.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --ios-bg: #f5f5f7;
+  --ios-surface: rgba(255, 255, 255, 0.8);
+  --ios-surface-strong: rgba(255, 255, 255, 0.92);
+  --ios-border: rgba(15, 23, 42, 0.08);
+  --ios-border-strong: rgba(15, 23, 42, 0.14);
+  --ios-text: #1d1d1f;
+  --ios-subtext: #515154;
+  --ios-blue: #0071e3;
+  --ios-blue-hover: #0077ed;
+  --ios-shadow: 0 24px 60px rgba(15, 23, 42, 0.1), 0 8px 18px rgba(15, 23, 42, 0.06);
+  --ios-shadow-soft: 0 10px 32px rgba(15, 23, 42, 0.07);
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  @apply antialiased;
+  background:
+    radial-gradient(1200px 600px at 100% -10%, rgba(10, 132, 255, 0.12), transparent 55%),
+    radial-gradient(900px 500px at -10% 20%, rgba(48, 209, 88, 0.1), transparent 55%),
+    var(--ios-bg);
+  color: var(--ios-text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Inter", "Segoe UI", sans-serif;
+  letter-spacing: -0.01em;
+}
+
+* {
+  @apply border-slateBlue-100;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  @apply text-inherit;
+}
+
+.focus-ring {
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+  --tw-ring-color: rgba(10, 132, 255, 0.4);
+  --tw-ring-offset-color: rgba(245, 245, 247, 0.9);
+}
+
+.page-shell {
+  @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+}
+
+.card {
+  border: 1px solid var(--ios-border);
+  background: linear-gradient(180deg, var(--ios-surface-strong), var(--ios-surface));
+  border-radius: 1.5rem;
+  box-shadow: var(--ios-shadow-soft);
+  backdrop-filter: blur(22px) saturate(140%);
+}
+
+.section-title {
+  @apply text-2xl font-semibold tracking-tight sm:text-3xl;
+  color: var(--ios-text);
+  letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+  @apply mt-3 w-full text-sm leading-6 sm:text-base;
+  color: var(--ios-subtext);
+}
+
+.kpi {
+  @apply text-2xl font-semibold tracking-tight sm:text-3xl;
+  color: var(--ios-text);
+  letter-spacing: -0.02em;
+}
+
+.prose-custom {
+  @apply max-w-prose text-[17px] leading-8;
+  color: var(--ios-text);
+}
+
+.prose-custom h1,
+.prose-custom h2,
+.prose-custom h3 {
+  @apply mt-10;
+  color: var(--ios-text);
+}
+
+.prose-custom p {
+  @apply mb-6;
+}
+
+.prose-custom ul {
+  @apply mb-6 list-disc pl-6;
+}
+
+.prose-custom li {
+  @apply mb-2;
+}
+
+/* iOS-style UI primitives */
+.ios-btn-primary {
+  @apply focus-ring inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold text-white transition;
+  background: linear-gradient(180deg, #198cff 0%, var(--ios-blue) 100%);
+  box-shadow: 0 8px 22px rgba(10, 132, 255, 0.34);
+}
+
+.ios-btn-primary:hover {
+  background: linear-gradient(180deg, #2491ff 0%, var(--ios-blue-hover) 100%);
+}
+
+.ios-btn-secondary {
+  @apply focus-ring inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-medium transition;
+  color: #1f2937;
+  border: 1px solid var(--ios-border-strong);
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
+.ios-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.ios-chip {
+  @apply rounded-full px-3 py-1 text-xs font-medium;
+  border: 1px solid var(--ios-border-strong);
+  background: rgba(255, 255, 255, 0.74);
+  color: #4b5563;
+}
+
+.ios-soft-panel {
+  border: 1px solid var(--ios-border);
+  background: rgba(255, 255, 255, 0.74);
+  border-radius: 1rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.story-reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: story-fade-in 620ms ease forwards;
+}
+
+.story-orb {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 9.5rem;
+  height: 9.5rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 35% 30%, #ffffff 0%, #eef6ff 45%, #e3f4ea 100%);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  box-shadow: 0 20px 48px rgba(15, 23, 42, 0.14), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+.story-orb-small {
+  width: 5rem;
+  height: 5rem;
+}
+
+.story-orb-glow {
+  position: absolute;
+  inset: -14%;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(10, 132, 255, 0.24), rgba(48, 209, 88, 0.06) 55%, transparent 75%);
+  filter: blur(12px);
+}
+
+.story-orb-text {
+  position: relative;
+  z-index: 1;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+}
+
+@keyframes story-fade-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ios-muted-text {
+  color: var(--ios-subtext);
+}
+
+.ios-strong-text {
+  color: var(--ios-text);
+}
+
+.box-copy {
+  display: block;
+  width: 100%;
+  max-inline-size: none;
+  text-wrap: wrap;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  line-height: 1.58;
+}
+
+.card p,
+.card li,
+.ios-soft-panel p,
+.ios-soft-panel li {
+  max-inline-size: none;
+  text-wrap: wrap;
+  overflow-wrap: anywhere;
+}
+
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+  border: 1px solid var(--ios-border) !important;
+  background: rgba(255, 255, 255, 0.88) !important;
+  border-radius: 0.95rem !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85), 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+input:not([type="checkbox"]):not([type="radio"]):focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: rgba(10, 132, 255, 0.35) !important;
+  box-shadow: 0 0 0 4px rgba(10, 132, 255, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+button,
+[role="button"] {
+  touch-action: manipulation;
+}

@@ -1,0 +1,52 @@
+{
+  "version": "scoring_operating_v1",
+  "minHistoryYears": 7,
+  "weights": {
+    "profitability": 1,
+    "debtSafety": 1,
+    "cashReality": 1,
+    "durability": 1
+  },
+  "sectorThresholds": {
+    "OPERATING_GENERAL": {
+      "operatingMarginFloor": 0.08,
+      "operatingMarginCeiling": 0.25,
+      "debtToEquityFloor": 0.2,
+      "debtToEquityCeiling": 2,
+      "interestCoverageFloor": 2,
+      "interestCoverageCeiling": 12,
+      "roicFloor": 0.08,
+      "roicCeiling": 0.25
+    },
+    "TECHNOLOGY_ASSET_LIGHT": {
+      "operatingMarginFloor": 0.12,
+      "operatingMarginCeiling": 0.35,
+      "debtToEquityFloor": 0.05,
+      "debtToEquityCeiling": 1.2,
+      "interestCoverageFloor": 4,
+      "interestCoverageCeiling": 18,
+      "roicFloor": 0.12,
+      "roicCeiling": 0.3
+    },
+    "CAPITAL_INTENSIVE": {
+      "operatingMarginFloor": 0.06,
+      "operatingMarginCeiling": 0.22,
+      "debtToEquityFloor": 0.4,
+      "debtToEquityCeiling": 2.8,
+      "interestCoverageFloor": 1.5,
+      "interestCoverageCeiling": 10,
+      "roicFloor": 0.06,
+      "roicCeiling": 0.2
+    },
+    "FINANCIALS": {
+      "operatingMarginFloor": 0.05,
+      "operatingMarginCeiling": 0.18,
+      "debtToEquityFloor": 0.5,
+      "debtToEquityCeiling": 8,
+      "interestCoverageFloor": 1,
+      "interestCoverageCeiling": 8,
+      "roicFloor": 0.06,
+      "roicCeiling": 0.2
+    }
+  }
+}

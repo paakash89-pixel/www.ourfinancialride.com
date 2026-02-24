@@ -1,0 +1,20 @@
+Section,Metric,INR Example,USD Example,Formula (Google Sheets/Excel),How to use
+Profile,Starting portfolio,75000000,1800000,,Retirement corpus example
+Profile,Year 1 withdrawal,2250000,72000,,Initial annual withdrawal
+Profile,Base withdrawal rate %,3,4,=IFERROR(C3/C2*100,0),Conservative baseline
+Profile,Inflation assumption %,5,3,,Annual step-up assumption
+Profile,Guardrail drawdown trigger %,20,20,,Spending adjustment trigger
+Tracker,Year 5 withdrawal,2734742,81033,=C3*(1+C4)^4,Inflation-adjusted spending
+Tracker,30-year total withdrawals (nominal),149529275,3426694,,Track long-term draw
+Tracker,30-year withdrawals (today's money),70148794,2329255,,Purchasing-power view
+ChartData,Quarter,INR Stability,USD Stability,,Use rows 10-15 for line chart
+ChartData,Q1,58,61,,
+ChartData,Q2,62,66,,
+ChartData,Q3,68,71,,
+ChartData,Q4,74,78,,
+ChartData,Q5,81,84,,
+ChartData,Q6,87,90,,
+Diagram,Step 1,Set baseline withdrawal,Set baseline withdrawal,,Start conservative
+Diagram,Step 2,Model inflation step-up,Model inflation step-up,,Annual update rule
+Diagram,Step 3,Define guardrails,Define guardrails,,Pre-commit actions
+Diagram,Step 4,Adjust only by rule,Adjust only by rule,,Avoid emotional overrides

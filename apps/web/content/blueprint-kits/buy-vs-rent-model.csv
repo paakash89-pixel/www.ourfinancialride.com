@@ -1,0 +1,20 @@
+Section,Metric,INR Example,USD Example,Formula (Google Sheets/Excel),How to use
+Profile,Monthly housing budget cap,90000,3200,,Protect savings rate first
+Profile,10-year buy all-in cost,17200000,530000,,EMI + taxes + maintenance + opportunity cost
+Profile,10-year rent all-in cost,11800000,390000,,Rent path total cost
+Profile,Investable difference,5400000,140000,=C3-C4,Capital available on rent path
+Profile,Monthly invest difference,45000,1167,=C5/120,Auto-invest this on rent path
+Tracker,Rent path future value,8736524,216897,=FV(0.08/12,120,-C6,0),Assumes 8% annual return
+Tracker,Decision margin,3336524,76897,=C7-C5,Positive favors rent path
+Tracker,Fixed-cost pressure score,74,78,,Lower fixed costs improve resilience
+ChartData,Quarter,INR Net Cost Index,USD Net Cost Index,,Lower is better
+ChartData,Q1,122,118,,
+ChartData,Q2,118,114,,
+ChartData,Q3,113,110,,
+ChartData,Q4,109,107,,
+ChartData,Q5,104,102,,
+ChartData,Q6,99,97,,
+Diagram,Step 1,Model full buy cost,Model full buy cost,,Do not use EMI only
+Diagram,Step 2,Model rent + invest,Model rent + invest,,Include compounding
+Diagram,Step 3,Stress test scenarios,Stress test scenarios,,Conservative assumptions
+Diagram,Step 4,Decide with math,Decide with math,,Avoid social pressure

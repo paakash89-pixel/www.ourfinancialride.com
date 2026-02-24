@@ -1,0 +1,20 @@
+Section,Metric,INR Example,USD Example,Formula (Google Sheets/Excel),How to use
+Profile,Equity target %,75,80,,Growth allocation baseline
+Profile,Debt or cash target %,25,20,=100-C2,Stability allocation baseline
+Profile,Rebalance band %,5,5,,Trigger threshold around target
+Profile,Current drift %,6,5,,Difference from target allocation
+Profile,Quarterly compliance %,84,86,,Policy adherence score
+Tracker,Rebalance needed,1,0,=IF(C5>C4,1,0),1 means action required now
+Tracker,Risk guard score,82,86,,Behavior + allocation stability score
+Tracker,Contribution cadence (weeks),2,2,,Auto-investing schedule
+ChartData,Quarter,INR Compliance %,USD Compliance %,,Use rows 10-15 for line chart
+ChartData,Q1,44,47,,
+ChartData,Q2,57,60,,
+ChartData,Q3,66,69,,
+ChartData,Q4,74,76,,
+ChartData,Q5,82,84,,
+ChartData,Q6,90,91,,
+Diagram,Step 1,Set allocation bands,Set allocation bands,,Define target and allowed drift
+Diagram,Step 2,Define rebalance trigger,Define rebalance trigger,,Use rule not emotion
+Diagram,Step 3,Write buy rules,Write buy rules,,Contributions follow policy
+Diagram,Step 4,Quarterly review script,Quarterly review script,,Same process every quarter
