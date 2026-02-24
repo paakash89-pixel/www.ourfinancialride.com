@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import type { ReactNode } from "react";
 import { getAllLetters, getLetterBySlug } from "../../../../lib/letters";
 
 interface LetterPageProps {
@@ -35,18 +34,6 @@ export async function generateMetadata({ params }: LetterPageProps): Promise<Met
     }
   };
 }
-
-const renderBlock = (block: string) => {
-  const lines = block.split("\n");
-  const nodes: ReactNode[] = [];
-  lines.forEach((line, index) => {
-    nodes.push(line);
-    if (index < lines.length - 1) {
-      nodes.push(<br key={`br-${index}`} />);
-    }
-  });
-  return nodes;
-};
 
 export default async function LetterDetailPage({ params }: LetterPageProps) {
   const { slug } = await params;
@@ -95,8 +82,10 @@ export default async function LetterDetailPage({ params }: LetterPageProps) {
         </h1>
 
         <div className="prose-custom mt-8">
-          {blocks.map((block) => (
-            <p key={block}>{renderBlock(block)}</p>
+          {blocks.map((block, index) => (
+            <p key={`${index}-${block.slice(0, 24)}`} className="whitespace-pre-line">
+              {block}
+            </p>
           ))}
         </div>
 
