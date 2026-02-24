@@ -1,6 +1,5 @@
 "use client";
 
-import type { InputHTMLAttributes } from "react";
 import { Controller, type FieldValues, type Path, type UseFormReturn } from "react-hook-form";
 import { formatNumberByRegion } from "../../lib/currency";
 import type { Region } from "../../lib/region";
@@ -20,14 +19,14 @@ export function CommaNumberInput<T extends FieldValues>({
   name,
   region,
   className,
-  inputMode = "numeric",
-  ...rest
+  inputMode = "numeric"
 }: {
   formApi: UseFormReturn<T>;
   name: Path<T>;
   region: Region;
   className: string;
-} & Omit<InputHTMLAttributes<HTMLInputElement>, "name" | "type" | "value" | "onChange">) {
+  inputMode?: "numeric" | "decimal";
+}) {
   return (
     <Controller
       control={formApi.control}
@@ -41,7 +40,6 @@ export function CommaNumberInput<T extends FieldValues>({
 
         return (
           <input
-            {...rest}
             ref={field.ref}
             name={field.name}
             type="text"
