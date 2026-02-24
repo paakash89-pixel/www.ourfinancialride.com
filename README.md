@@ -51,6 +51,9 @@ Set in `.env` (see `.env.example`):
 
 - `NEXT_PUBLIC_SITE_URL` - public site URL (production: `https://www.ourfinancialride.com`)
 - `NEXT_PUBLIC_CONTACT_EMAIL` - contact email used in application success mailto draft
+- `APPLICATION_TO_EMAIL` - inbox that receives apply-form submissions (default: `ourfinancialride@gmail.com`)
+- `RESEND_API_KEY` - Resend API key for server-side email delivery
+- `RESEND_FROM_EMAIL` - verified sender used by Resend (example: `OFR Applications <onboarding@resend.dev>`)
 - `MEMBER_PASSWORD` - owner/member login password for `/login`
 - `MEMBER_SESSION_SECRET` - cookie signing secret
 
@@ -58,10 +61,11 @@ Set in `.env` (see `.env.example`):
 `/work-with-us` submit behavior:
 
 1. Validates with Zod.
-2. Stores submission in an in-memory queue on the server (`/api/applications`) for production safety.
-3. In local development (`NODE_ENV !== production`), appends to `/data/applications.json`.
-4. In browser, stores a backup in localStorage.
-5. Shows submission summary + copy-to-email + JSON download.
+2. Sends the submission by email to `APPLICATION_TO_EMAIL` through Resend (if configured).
+3. Stores submission in an in-memory queue on the server (`/api/applications`) for production safety.
+4. In local development (`NODE_ENV !== production`), appends to `/data/applications.json`.
+5. In browser, stores a backup in localStorage.
+6. Shows submission summary + copy-to-email + JSON download.
 
 ### Why this approach?
 Vercel serverless does not support persistent runtime disk writes. The current flow is safe and explicit for launch.

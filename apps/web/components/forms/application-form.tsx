@@ -20,6 +20,9 @@ const CONTACT_EMAIL =
 interface SubmitResponse {
   ok: boolean;
   record: ApplicationRecord;
+  emailSent?: boolean;
+  emailError?: string | null;
+  emailTo?: string;
 }
 
 const defaultValues: ApplicationValues = {
@@ -41,6 +44,11 @@ const fieldClassName =
 
 export function ApplicationForm() {
   const [submitted, setSubmitted] = useState<ApplicationRecord | null>(null);
+  const [emailDelivery, setEmailDelivery] = useState<{
+    sent: boolean;
+    error?: string | null;
+    to?: string;
+  } | null>(null);
   const [copied, setCopied] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
@@ -101,6 +109,7 @@ export function ApplicationForm() {
   const onSubmit = async (values: ApplicationValues) => {
     setSubmitError(null);
     setCopied(false);
+    setEmailDelivery(null);
 
     try {
       const response = await fetch("/api/applications", {
@@ -115,6 +124,11 @@ export function ApplicationForm() {
       }
 
       setSubmitted(payload.record);
+      setEmailDelivery({
+        sent: Boolean(payload.emailSent),
+        error: payload.emailError ?? null,
+        to: payload.emailTo
+      });
 
       if (typeof window !== "undefined") {
         const raw = window.localStorage.getItem(STORAGE_KEY);
@@ -155,6 +169,19 @@ export function ApplicationForm() {
       <div className="card animate-fade-up p-6">
         <h3 className="text-xl font-semibold text-slateBlue-700">Application received</h3>
         <p className="mt-2 text-sm text-slateBlue-500">We will respond with next steps.</p>
+        {emailDelivery?.sent ? (
+          <p className="mt-2 text-sm text-calmGreen-700">
+            Application emailed to {emailDelivery.to ?? CONTACT_EMAIL}.
+          </p>
+        ) : (
+          <p className="mt-2 text-sm text-amber-700">
+            Application saved, but automatic email delivery is not configured yet.
+            Use the backup email buttons below.
+          </p>
+        )}
+        {!emailDelivery?.sent && emailDelivery?.error ? (
+          <p className="mt-1 text-xs text-amber-700">Delivery detail: {emailDelivery.error}</p>
+        ) : null}
 
         <div className="mt-5 grid gap-3 sm:grid-cols-2">
           <SummaryItem label="Spouse 1" value={submitted.spouse1Name} />
