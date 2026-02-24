@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   applicationSchema,
@@ -14,14 +14,12 @@ import {
 } from "../../lib/application-schema";
 
 const STORAGE_KEY = "ofr-application-backups";
-const CONTACT_EMAIL =
-  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "ourfinancialride@gmail.com";
+const DEFAULT_DELIVERY_EMAIL = "ourfinancialride@gmail.com";
 
 interface SubmitResponse {
   ok: boolean;
   record: ApplicationRecord;
-  emailSent?: boolean;
-  emailError?: string | null;
+  message?: string;
   emailTo?: string;
 }
 
@@ -44,12 +42,7 @@ const fieldClassName =
 
 export function ApplicationForm() {
   const [submitted, setSubmitted] = useState<ApplicationRecord | null>(null);
-  const [emailDelivery, setEmailDelivery] = useState<{
-    sent: boolean;
-    error?: string | null;
-    to?: string;
-  } | null>(null);
-  const [copied, setCopied] = useState(false);
+  const [deliveryEmail, setDeliveryEmail] = useState(DEFAULT_DELIVERY_EMAIL);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   const {
@@ -64,52 +57,8 @@ export function ApplicationForm() {
 
   const incomeRange = watch("incomeRange");
 
-  const emailDraft = useMemo(() => {
-    if (!submitted) return "";
-    const spouse2 = submitted.spouse2Name?.trim() || "Not provided (individual application)";
-    const participants = submitted.spouse2Name?.trim()
-      ? `${submitted.spouse1Name} + ${submitted.spouse2Name}`
-      : submitted.spouse1Name;
-
-    return [
-      `Subject: OFR Application - ${participants}`,
-      "",
-      `Spouse 1: ${submitted.spouse1Name}`,
-      `Spouse 2 / Partner: ${spouse2}`,
-      `Email: ${submitted.email}`,
-      `Phone/WhatsApp: ${submitted.phone || "N/A"}`,
-      `Location: ${submitted.location}`,
-      `Income Range: ${submitted.incomeRange}`,
-      `Current Savings Rate: ${submitted.currentSavingsRate}`,
-      `Portfolio Range: ${submitted.portfolioRange}`,
-      "",
-      `Biggest Goal: ${submitted.biggestGoal}`,
-      "",
-      `Biggest Worry: ${submitted.biggestWorry}`,
-      "",
-      `Fit: ${submitted.fit}`,
-      `Submitted At: ${submitted.submittedAt}`,
-      "",
-      "Please share next steps for the OFR coaching program."
-    ].join("\n");
-  }, [submitted]);
-
-  const mailtoLink = useMemo(() => {
-    if (!submitted) return "#";
-    const participants = submitted.spouse2Name?.trim()
-      ? `${submitted.spouse1Name} + ${submitted.spouse2Name}`
-      : submitted.spouse1Name;
-    const subject = encodeURIComponent(
-      `OFR Application - ${participants}`
-    );
-    const body = encodeURIComponent(emailDraft.split("\n").slice(2).join("\n"));
-    return `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-  }, [emailDraft, submitted]);
-
   const onSubmit = async (values: ApplicationValues) => {
     setSubmitError(null);
-    setCopied(false);
-    setEmailDelivery(null);
 
     try {
       const response = await fetch("/api/applications", {
@@ -124,11 +73,7 @@ export function ApplicationForm() {
       }
 
       setSubmitted(payload.record);
-      setEmailDelivery({
-        sent: Boolean(payload.emailSent),
-        error: payload.emailError ?? null,
-        to: payload.emailTo
-      });
+      setDeliveryEmail(payload.emailTo ?? DEFAULT_DELIVERY_EMAIL);
 
       if (typeof window !== "undefined") {
         const raw = window.localStorage.getItem(STORAGE_KEY);
@@ -141,47 +86,13 @@ export function ApplicationForm() {
     }
   };
 
-  const downloadJson = () => {
-    if (!submitted) return;
-    const blob = new Blob([JSON.stringify(submitted, null, 2)], {
-      type: "application/json"
-    });
-    const url = URL.createObjectURL(blob);
-    const anchor = document.createElement("a");
-    anchor.href = url;
-    anchor.download = `ofr-application-${submitted.id}.json`;
-    anchor.click();
-    URL.revokeObjectURL(url);
-  };
-
-  const copyEmail = async () => {
-    if (!emailDraft) return;
-    try {
-      await navigator.clipboard.writeText(emailDraft);
-      setCopied(true);
-    } catch {
-      setCopied(false);
-    }
-  };
-
   if (submitted) {
     return (
       <div className="card animate-fade-up p-6">
-        <h3 className="text-xl font-semibold text-slateBlue-700">Application received</h3>
-        <p className="mt-2 text-sm text-slateBlue-500">We will respond with next steps.</p>
-        {emailDelivery?.sent ? (
-          <p className="mt-2 text-sm text-calmGreen-700">
-            Application emailed to {emailDelivery.to ?? CONTACT_EMAIL}.
-          </p>
-        ) : (
-          <p className="mt-2 text-sm text-amber-700">
-            Application saved, but automatic email delivery is not configured yet.
-            Use the backup email buttons below.
-          </p>
-        )}
-        {!emailDelivery?.sent && emailDelivery?.error ? (
-          <p className="mt-1 text-xs text-amber-700">Delivery detail: {emailDelivery.error}</p>
-        ) : null}
+        <h3 className="text-xl font-semibold text-slateBlue-700">Application submitted</h3>
+        <p className="mt-2 text-sm text-slateBlue-500">
+          Your application has been emailed to {deliveryEmail}. We will respond with next steps.
+        </p>
 
         <div className="mt-5 grid gap-3 sm:grid-cols-2">
           <SummaryItem label="Spouse 1" value={submitted.spouse1Name} />
@@ -201,35 +112,10 @@ export function ApplicationForm() {
           <p>{submitted.biggestWorry}</p>
         </div>
 
-        <div className="mt-6 flex flex-wrap gap-2">
-          <button
-            type="button"
-            onClick={copyEmail}
-            className="ios-btn-primary px-4 py-2 text-sm"
-          >
-            Copy this email to send
-          </button>
-          <a
-            href={mailtoLink}
-            className="ios-btn-secondary px-4 py-2 text-sm"
-          >
-            Open email draft
-          </a>
-          <button
-            type="button"
-            onClick={downloadJson}
-            className="ios-btn-secondary px-4 py-2 text-sm"
-          >
-            Download your application JSON
-          </button>
-        </div>
-
         <div className="ios-soft-panel mt-5 space-y-2 p-4 text-sm text-slateBlue-700">
           <p className="font-medium text-slateBlue-700">Next step in workflow</p>
           <p>We will contact you for the free 20-minute intro call and acceptance decision.</p>
         </div>
-
-        {copied ? <p className="mt-2 text-xs text-calmGreen-700">Email draft copied.</p> : null}
       </div>
     );
   }

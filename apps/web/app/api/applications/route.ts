@@ -174,11 +174,22 @@ export async function POST(request: Request) {
   await persistForDev(record);
   const emailResult = await sendApplicationEmail(record);
 
+  if (!emailResult.sent) {
+    return NextResponse.json(
+      {
+        ok: false,
+        message: "We could not send your application right now. Please try again in a minute.",
+        emailError: emailResult.error ?? null
+      },
+      { status: 502 }
+    );
+  }
+
   return NextResponse.json({
     ok: true,
     record,
-    emailSent: emailResult.sent,
-    emailError: emailResult.error ?? null,
+    emailSent: true,
+    emailError: null,
     emailTo: getContactEmail(),
     queueLength: inMemoryQueue.length,
     note:
