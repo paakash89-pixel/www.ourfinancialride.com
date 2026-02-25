@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { RegionToggle } from "../../../components/region-toggle";
 import { ToolsSuite } from "../../../components/tools/tools-suite";
 
 export const metadata: Metadata = {
@@ -11,7 +12,10 @@ export default function ToolsPage() {
   return (
     <main className="page-shell py-12 sm:py-16">
       <section className="card animate-fade-up p-7 sm:p-10">
-        <h1 className="text-4xl font-semibold tracking-tight text-slateBlue-700 sm:text-5xl">Free Tools</h1>
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <h1 className="text-4xl font-semibold tracking-tight text-slateBlue-700 sm:text-5xl">Free Tools</h1>
+          <RegionToggle />
+        </div>
         <p className="box-copy mt-4 w-full text-base leading-7 text-slateBlue-500">
           Simple calculators with conservative assumptions and clear outputs.
         </p>

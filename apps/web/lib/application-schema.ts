@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const locationOptions = ["India", "US"] as const;
-export const incomeOptions = ["₹25L–₹1Cr", "$100k–$250k", "Other"] as const;
+export const incomeOptions = ["₹25L+", "$100k+", "Other"] as const;
 export const savingsRateOptions = ["<10", "10–20", "20–25", "25–35", "35+"] as const;
 export const portfolioOptions = ["<₹25L", "₹25–75L", "₹75L–₹2Cr", "₹2Cr+"] as const;
 

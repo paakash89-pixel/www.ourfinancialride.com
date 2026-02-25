@@ -8,11 +8,11 @@ import { workWithUsFaqs } from "../../../lib/content";
 export const metadata: Metadata = {
   title: "Work With Us",
   description:
-    "Apply for OFR quarterly coaching for high-earning families who want a simple, disciplined wealth plan."
+    "Apply for OFR quarterly coaching for households in India and the US who want a simple, disciplined wealth plan."
 };
 
 const fitList = [
-  "Household or individual income in our core band (India ₹25L–₹1Cr or US $100k–$250k)",
+  "Household or individual income from India ₹25L+ or US $100k+",
   "NRIs planning a move but unsure how; we build a clear structure",
   "Ready to hold a 25-35% savings rate",
   "Open to index-based investing and clear rules",
@@ -49,7 +49,8 @@ export default function WorkWithUsPage() {
           Quarterly Coaching Program
         </h1>
         <p className="mt-4 max-w-3xl text-base leading-7 text-slateBlue-500">
-          Founder cohort annual fee: ₹25,000 (India) or $1,000 (US) for all 4 quarterly calls.
+          Founder cohort annual fee: ₹25,000 (India) or $1,000 (US) for 4 quarterly calls plus
+          year-round implementation support.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Link
@@ -98,6 +99,22 @@ export default function WorkWithUsPage() {
             </li>
           ))}
         </ul>
+      </section>
+
+      <section className="card mt-10 animate-fade-up p-6 sm:p-8">
+        <h2 className="section-title">Why Annual Coaching vs One-Off Calls</h2>
+        <div className="mt-5 grid gap-3 sm:grid-cols-2">
+          <article className="ios-soft-panel p-4 text-sm text-slateBlue-600">
+            <p className="text-xs uppercase tracking-wide text-slateBlue-500">One-off call</p>
+            <p className="mt-2">Useful for a single decision, but no long-term accountability.</p>
+          </article>
+          <article className="ios-soft-panel p-4 text-sm text-slateBlue-600">
+            <p className="text-xs uppercase tracking-wide text-slateBlue-500">Annual coaching</p>
+            <p className="mt-2">
+              We implement, review, and recalibrate every quarter so your system works through real life changes.
+            </p>
+          </article>
+        </div>
       </section>
 
       <section className="card mt-10 animate-fade-up p-6 sm:p-8">

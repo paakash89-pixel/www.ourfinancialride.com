@@ -4,6 +4,10 @@ import { BrandMark } from "./brand-mark";
 export function SiteFooter() {
   const contactEmail =
     process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "ourfinancialride@gmail.com";
+  const instagramUrl =
+    process.env.NEXT_PUBLIC_INSTAGRAM_URL ?? "https://instagram.com/ourfinancialride";
+  const threadsUrl =
+    process.env.NEXT_PUBLIC_THREADS_URL ?? "https://www.threads.net/@ourfinancialride";
 
   return (
     <footer className="mt-20 border-t border-white/60 bg-white/55 backdrop-blur-xl">
@@ -16,6 +20,28 @@ export function SiteFooter() {
             </p>
           </div>
           <div className="flex flex-wrap items-start gap-4 text-sm text-slateBlue-600 sm:justify-end">
+            <Link href="/contact" className="focus-ring rounded-md px-2 py-1 hover:text-slateBlue-700">
+              Contact
+            </Link>
+            <Link href="/testimonials" className="focus-ring rounded-md px-2 py-1 hover:text-slateBlue-700">
+              Testimonials
+            </Link>
+            <a
+              href={instagramUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="focus-ring rounded-md px-2 py-1 hover:text-slateBlue-700"
+            >
+              Instagram
+            </a>
+            <a
+              href={threadsUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="focus-ring rounded-md px-2 py-1 hover:text-slateBlue-700"
+            >
+              Threads
+            </a>
             <Link href="/disclaimer" className="focus-ring rounded-md px-2 py-1 hover:text-slateBlue-700">
               Disclaimer
             </Link>

@@ -30,7 +30,7 @@ const defaultValues: ApplicationValues = {
   email: "",
   phone: "",
   location: "India",
-  incomeRange: "₹25L–₹1Cr",
+  incomeRange: "₹25L+",
   currentSavingsRate: "10–20",
   portfolioRange: "<₹25L",
   biggestGoal: "",
@@ -185,7 +185,7 @@ export function ApplicationForm() {
 
       {incomeRange === "Other" ? (
         <div className="rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800">
-          OFR is built for the listed income bands. You can still apply and we will review fit.
+          OFR is built for India ₹25L+ and US $100k+ households. You can still apply and we will review fit.
         </div>
       ) : null}
 

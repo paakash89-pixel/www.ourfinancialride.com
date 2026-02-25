@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { BrandMark } from "./brand-mark";
-import { RegionToggle } from "./region-toggle";
 
 const nav = [
   { href: "/work-with-us", label: "Work With Us" },
   { href: "/tools", label: "Tools" },
-  { href: "/letters", label: "Letters" }
+  { href: "/our-story", label: "Our Story" },
+  { href: "/principles", label: "Principles" },
+  { href: "/testimonials", label: "Testimonials" },
+  { href: "/contact", label: "Contact" }
 ];
 
 export function SiteHeader() {
@@ -21,7 +23,6 @@ export function SiteHeader() {
             aria-label="Main navigation"
             className="flex flex-wrap items-center gap-1 rounded-full border border-slateBlue-100 bg-white/72 p-1.5 text-sm text-slateBlue-600 shadow-soft"
           >
-            <RegionToggle />
             {nav.map((item) => (
               <Link
                 key={item.href}

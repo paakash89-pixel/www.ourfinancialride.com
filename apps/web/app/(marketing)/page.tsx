@@ -2,16 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { OnboardingWorkflow } from "../../components/onboarding-workflow";
 import { PricingCard } from "../../components/pricing-card";
-import { StoryReel } from "../../components/story-reel";
-import { philosophyRanked } from "../../lib/content";
 
 export const metadata: Metadata = {
   title: "Build Time Freedom Without Noise",
   description:
-    "For families earning ₹25L–₹1Cr (India) or $100k–$250k (US), OFR helps build work-optional living in 8-10 years."
+    "For households earning ₹25L+ (India) or $100k+ (US), OFR helps build work-optional living in 8-10 years."
 };
 
 const whoFor = [
+  "India households ₹25L+ and US households $100k+",
   "Families, individuals, and serious professionals",
   "NRIs planning a move but unsure how; we build a clear structure",
   "Ready to save 25%+ after-tax",
@@ -52,7 +51,7 @@ export default function HomePage() {
           Build Time Freedom Without Noise.
         </h1>
         <p className="max-w-3xl text-base leading-7 text-slateBlue-500">
-          For families and serious professionals earning ₹25L–₹1Cr (India) or $100k–$250k (US).
+          For families and serious professionals earning ₹25L+ (India) or $100k+ (US).
           We build a simple, disciplined plan so work can become optional in 8-10 years.
         </p>
         <div className="flex flex-wrap gap-3">
@@ -93,18 +92,46 @@ export default function HomePage() {
         </article>
       </section>
 
-      <StoryReel />
+      <section className="mt-10 grid gap-4 sm:grid-cols-2">
+        <article className="card animate-fade-up p-6">
+          <h2 className="text-xl font-semibold text-slateBlue-700">Our Story</h2>
+          <p className="box-copy mt-3 text-sm text-slateBlue-600">
+            Our full journey, mistakes, and what actually worked.
+          </p>
+          <Link href="/our-story" className="mt-4 inline-flex text-sm font-medium text-slateBlue-700 underline underline-offset-4">
+            Open Our Story
+          </Link>
+        </article>
+        <article className="card animate-fade-up p-6">
+          <h2 className="text-xl font-semibold text-slateBlue-700">Core Mission & Principles</h2>
+          <p className="box-copy mt-3 text-sm text-slateBlue-600">
+            The OFR operating principles we teach and apply every quarter.
+          </p>
+          <Link href="/principles" className="mt-4 inline-flex text-sm font-medium text-slateBlue-700 underline underline-offset-4">
+            Open Principles
+          </Link>
+        </article>
+      </section>
 
-      <section className="card mt-10 animate-fade-up p-6 sm:p-8">
-        <h2 className="section-title">OFR Philosophy — Ranked Principles</h2>
-        <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
-          {philosophyRanked.map((item, index) => (
-            <article key={item} className="ios-soft-panel p-4 text-sm text-slateBlue-700">
-              <p className="text-xs tracking-wide text-slateBlue-500">#{index + 1}</p>
-              <p className="box-copy mt-2">{item}</p>
-            </article>
-          ))}
-        </div>
+      <section className="mt-10 grid gap-4 sm:grid-cols-2">
+        <article className="card animate-fade-up p-6">
+          <h2 className="text-xl font-semibold text-slateBlue-700">Client Feedback</h2>
+          <p className="box-copy mt-3 text-sm text-slateBlue-600">
+            Real comments from current coaching clients.
+          </p>
+          <Link href="/testimonials" className="mt-4 inline-flex text-sm font-medium text-slateBlue-700 underline underline-offset-4">
+            Read Testimonials
+          </Link>
+        </article>
+        <article className="card animate-fade-up p-6">
+          <h2 className="text-xl font-semibold text-slateBlue-700">Contact Us</h2>
+          <p className="box-copy mt-3 text-sm text-slateBlue-600">
+            Reach out directly for fit questions before you apply.
+          </p>
+          <Link href="/contact" className="mt-4 inline-flex text-sm font-medium text-slateBlue-700 underline underline-offset-4">
+            Open Contact
+          </Link>
+        </article>
       </section>
 
       <div className="mt-10">
