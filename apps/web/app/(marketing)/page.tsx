@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { OnboardingWorkflow } from "../../components/onboarding-workflow";
-import { PricingCard } from "../../components/pricing-card";
+import { getAllLetters } from "../../lib/letters";
 
 export const metadata: Metadata = {
   title: "Build Time Freedom Without Noise",
@@ -42,7 +41,9 @@ const toolsPreview = [
   }
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const letters = (await getAllLetters()).slice(0, 3);
+
   return (
     <main className="page-shell py-12 sm:py-16">
       <section className="card animate-fade-up space-y-6 p-7 sm:p-10">
@@ -134,14 +135,6 @@ export default function HomePage() {
         </article>
       </section>
 
-      <div className="mt-10">
-        <PricingCard />
-      </div>
-
-      <div className="mt-10">
-        <OnboardingWorkflow />
-      </div>
-
       <section className="card mt-10 animate-fade-up p-6 sm:p-8">
         <h2 className="section-title">Tools Preview</h2>
         <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -159,6 +152,32 @@ export default function HomePage() {
               </div>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="card mt-10 animate-fade-up p-6 sm:p-8">
+        <h2 className="section-title">Letters</h2>
+        <p className="mt-2 text-sm text-slateBlue-500">
+          Practical notes on long-term wealth building for India and US families.
+        </p>
+        <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {letters.map((letter) => (
+            <article key={letter.slug} className="ios-soft-panel p-4">
+              <h3 className="text-base font-semibold text-slateBlue-700">{letter.title}</h3>
+              <p className="box-copy mt-2 text-sm text-slateBlue-600">{letter.summary}</p>
+              <Link
+                href={`/letters/${letter.slug}`}
+                className="mt-4 inline-flex text-sm font-medium text-slateBlue-700 underline underline-offset-4"
+              >
+                Read letter
+              </Link>
+            </article>
+          ))}
+        </div>
+        <div className="mt-5">
+          <Link href="/letters" className="ios-btn-secondary px-5 py-3 text-sm">
+            View all letters
+          </Link>
         </div>
       </section>
     </main>

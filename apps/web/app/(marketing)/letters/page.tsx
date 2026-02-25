@@ -26,14 +26,7 @@ export default async function LettersPage() {
       <section className="mt-8 grid gap-4">
         {letters.map((letter) => (
           <article key={letter.slug} className="card animate-fade-up p-6">
-            <p className="text-xs uppercase tracking-wide text-slateBlue-500">
-              {new Date(letter.date).toLocaleDateString("en-IN", {
-                year: "numeric",
-                month: "short",
-                day: "numeric"
-              })}
-            </p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slateBlue-700">{letter.title}</h2>
+            <h2 className="text-2xl font-semibold tracking-tight text-slateBlue-700">{letter.title}</h2>
             <p className="mt-3 text-sm text-slateBlue-600">{letter.summary}</p>
             {letter.keywords && letter.keywords.length > 0 ? (
               <div className="mt-3 flex flex-wrap gap-2">

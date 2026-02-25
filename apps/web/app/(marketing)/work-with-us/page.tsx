@@ -3,7 +3,6 @@ import Link from "next/link";
 import { ApplicationForm } from "../../../components/forms/application-form";
 import { OnboardingWorkflow } from "../../../components/onboarding-workflow";
 import { RegionPricingPanel } from "../../../components/region-pricing-panel";
-import { workWithUsFaqs } from "../../../lib/content";
 
 export const metadata: Metadata = {
   title: "Work With Us",
@@ -30,14 +29,6 @@ const programStructure = [
   "Quarter 2: Tax-efficient investing and contribution plan",
   "Quarter 3: Goal funding, housing decisions, and withdrawals",
   "Quarter 4: Behavior system, annual review, and next-year plan"
-];
-
-const includes = [
-  "4 quarterly strategy calls (90 min each) across 12 months",
-  "For married applicants: spouse attendance is expected in each quarterly call",
-  "Simple action steps after each call",
-  "Email support between sessions",
-  "Quarterly review system"
 ];
 
 export default function WorkWithUsPage() {
@@ -90,16 +81,13 @@ export default function WorkWithUsPage() {
         </ul>
       </section>
 
-      <section className="card mt-10 animate-fade-up p-6 sm:p-8">
-        <h2 className="section-title">What’s Included</h2>
-        <ul className="mt-5 grid gap-3 text-sm text-slateBlue-600 sm:grid-cols-2">
-          {includes.map((item) => (
-            <li key={item} className="ios-soft-panel p-3">
-              {item}
-            </li>
-          ))}
-        </ul>
-      </section>
+      <div className="mt-10">
+        <OnboardingWorkflow />
+      </div>
+
+      <div className="mt-10">
+        <RegionPricingPanel showApply={false} />
+      </div>
 
       <section className="card mt-10 animate-fade-up p-6 sm:p-8">
         <h2 className="section-title">Why Annual Coaching vs One-Off Calls</h2>
@@ -117,36 +105,19 @@ export default function WorkWithUsPage() {
         </div>
       </section>
 
-      <section className="card mt-10 animate-fade-up p-6 sm:p-8">
-        <h2 className="section-title">How Onboarding Works</h2>
-        <ol className="mt-5 space-y-2 text-sm text-slateBlue-600">
-          <li>1. Apply as an individual or couple.</li>
-          <li>2. Take the free 20-minute intro call.</li>
-          <li>3. If accepted, pay 50% of the annual fee before call 1 (Google Pay or Apple Pay).</li>
-          <li>4. Pay the remaining 50% after call 1.</li>
-        </ol>
-      </section>
-
-      <div className="mt-10">
-        <OnboardingWorkflow />
-      </div>
-
-      <div className="mt-10">
-        <RegionPricingPanel showApply={false} />
-      </div>
       <p className="mt-4 text-sm text-slateBlue-600">
         If it is not a fit after Quarter 1, we refund the annual fee minus the first session.
       </p>
 
       <section className="card mt-10 animate-fade-up p-6 sm:p-8">
-        <h2 className="section-title">FAQ</h2>
-        <div className="mt-5 space-y-3">
-          {workWithUsFaqs.map((faq) => (
-            <article key={faq.question} className="ios-soft-panel p-4">
-              <h3 className="text-base font-semibold text-slateBlue-700">{faq.question}</h3>
-              <p className="mt-2 text-sm text-slateBlue-600">{faq.answer}</p>
-            </article>
-          ))}
+        <h2 className="section-title">Questions?</h2>
+        <p className="mt-2 text-sm text-slateBlue-600">
+          Read the full FAQ for fit, pricing, and process details.
+        </p>
+        <div className="mt-4">
+          <Link href="/faq" className="ios-btn-secondary px-5 py-3 text-sm">
+            View FAQ
+          </Link>
         </div>
       </section>
 

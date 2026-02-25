@@ -18,9 +18,7 @@ export default function PaymentComingSoonPage() {
         <div className="ios-soft-panel mt-5 p-4 text-sm text-slateBlue-600">
           <p className="font-medium text-slateBlue-700">For Quarterly Coaching Program</p>
           <p className="mt-1">Annual fee covers all 4 quarterly calls.</p>
-          <p className="mt-1">Free 20-minute intro call first.</p>
           <p className="mt-1">If accepted: 50% of annual fee before first call, 50% after first call.</p>
-          <p className="mt-1">Payment methods: Google Pay or Apple Pay.</p>
         </div>
 
         <div className="mt-6">

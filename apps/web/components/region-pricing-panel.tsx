@@ -38,14 +38,6 @@ export function RegionPricingPanel({
         </div>
       </div>
 
-      <div className="ios-soft-panel mt-5 p-4 text-sm text-slateBlue-600">
-        <p>Free 20-minute intro call first.</p>
-        <p className="mt-1">Individuals can join solo. Married applicants should include spouse.</p>
-        <p className="mt-1">If accepted: 50% before call 1 and 50% after call 1.</p>
-        <p className="mt-1">Payment methods: Google Pay or Apple Pay.</p>
-        <p className="mt-1">Annual coaching is for implementation, not just information.</p>
-      </div>
-
       {showApply ? (
         <div className="mt-5">
           <Link

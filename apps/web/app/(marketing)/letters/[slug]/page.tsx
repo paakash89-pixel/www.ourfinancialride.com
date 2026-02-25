@@ -70,14 +70,7 @@ export default async function LetterDetailPage({ params }: LetterPageProps) {
             })
           }}
         />
-        <p className="text-xs uppercase tracking-wide text-slateBlue-500">
-          {new Date(letter.date).toLocaleDateString("en-IN", {
-            year: "numeric",
-            month: "long",
-            day: "numeric"
-          })}
-        </p>
-        <h1 className="mt-3 text-4xl font-semibold tracking-tight text-slateBlue-700 sm:text-5xl">
+        <h1 className="text-4xl font-semibold tracking-tight text-slateBlue-700 sm:text-5xl">
           {letter.title}
         </h1>
 

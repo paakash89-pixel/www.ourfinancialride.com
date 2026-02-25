@@ -2,12 +2,13 @@ import Link from "next/link";
 import { BrandMark } from "./brand-mark";
 
 const nav = [
-  { href: "/work-with-us", label: "Work With Us" },
-  { href: "/tools", label: "Tools" },
   { href: "/our-story", label: "Our Story" },
   { href: "/principles", label: "Principles" },
+  { href: "/work-with-us", label: "Work With Us" },
   { href: "/testimonials", label: "Testimonials" },
-  { href: "/contact", label: "Contact" }
+  { href: "/tools", label: "Tools" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/contact", label: "Contact Us" }
 ];
 
 export function SiteHeader() {
